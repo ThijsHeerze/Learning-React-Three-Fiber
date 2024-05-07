@@ -7,12 +7,12 @@ function Cube() {
     <Canvas>
       <CubeMesh />
       <ambientLight />
-      <pointLight position={[10, 10, 10]} />
+      <pointLight position={[-1, 0, 0]} />
     </Canvas>
   );
 }
 
-function CubeMesh() {
+function CubeMesh(position, size, color) {
   const meshRef = useRef();
 
   // Move useFrame inside the Canvas component
@@ -26,11 +26,9 @@ function CubeMesh() {
   });
 
   return (
-    <mesh ref={meshRef}>
-      <boxGeometry />
-      <meshStandardMaterial>
-        <color args={["hotpink"]} attach="color"></color>
-      </meshStandardMaterial>
+    <mesh position={position} ref={meshRef}>
+      <boxGeometry args={size}/>
+      <meshStandardMaterial color={color} />
     </mesh>
   );
 }
